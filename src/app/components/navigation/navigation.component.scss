@@ -1,0 +1,21 @@
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    & li {
+        padding: .8em;
+        cursor: pointer;
+    }
+
+    & li:hover {
+        border-radius: 10px;
+        background-color: rgba(240, 240, 240, .5);
+    }
+
+    & svg {
+        margin-right: 1em;
+        transform: translate(0, 5px);
+    }
+}
