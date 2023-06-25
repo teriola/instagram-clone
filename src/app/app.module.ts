@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideNav } from './components/sidenav/sidenav.component';
+import { SideNavComponent } from './components/sidenav/sidenav.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SideNav,
+        SideNavComponent,
+        FeedComponent,
     ],
     imports: [
         BrowserModule,

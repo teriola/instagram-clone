@@ -2,6 +2,7 @@ ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    gap: 1em;
     padding: 0;
     margin: 0;
     margin-top: 2em;
@@ -13,8 +14,12 @@ ul {
     }
 
     & li:hover {
-        border-radius: 10px;
-        background-color: rgba(230, 230, 230, .5);
+        border-radius: 15px;
+        background-color: var(--gray);
+    }
+
+    & li:last-child {
+        margin-top: auto;
     }
 
     & svg {

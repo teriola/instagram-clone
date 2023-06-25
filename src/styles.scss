@@ -3,6 +3,7 @@
     /* COLORS */
     --background-color: #fff;
     --text-color: #000;
+    --gray: rgba(240, 240, 240, .8);
 
     /* FONT */
     --font: 'Open Sans', sans-serif;
@@ -28,12 +29,6 @@ body {
     color: var(--text-color);
 }
 
-app-root {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: 1fr 4fr 1fr;
-}
-
 /****** TYPOGRAPHY ******/
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
@@ -49,4 +44,10 @@ a,
 a:visited,
 a:active {
     text-decoration: none;
+}
+
+/****** APP STYLES ******/
+app-root {
+    display: flex;
+    gap: 2em;
 }
