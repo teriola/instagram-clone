@@ -1,0 +1,100 @@
+section {
+    max-width: 468px;
+    padding: 0 0 .8em 0;
+    border-bottom: 2px solid var(--gray);
+
+    & header {
+        display: flex;
+        align-self: center;
+        margin-top: 5em;
+
+        & a {
+            margin-left: auto;
+        }
+
+        & a:hover {
+            opacity: .6;
+        }
+    }
+
+    & .image {
+        overflow: hidden;
+        border-radius: 4px;
+        margin-top: 1em;
+    }
+
+    & footer {
+        & .buttons {
+            display: flex;
+            gap: 1em;
+
+            & span:hover {
+                opacity: .6;
+            }
+
+            & span:last-child {
+                margin-left: auto;
+            }
+        }
+
+        & .likes {
+            font-size: .8em;
+            font-weight: bold;
+        }
+
+        & .others {
+
+        }
+
+        & .comment {
+            margin-top: 1em;
+
+            & input {
+                all: unset;
+                font-size: .8em;
+                width: 100%;
+            }
+        }
+    }
+
+
+    & p {
+        line-height: 1.2;
+        font-size: .9em;
+        margin: 0;
+    }
+
+    & .credentials,
+    & .profile-picture {
+        display: inline-block;
+    }
+
+    & .profile-picture {
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: .8em;
+        vertical-align: middle;
+    }
+
+    & .credentials {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & .owner span {
+            color: var(--gray-text);
+        }
+
+        & .owner span::before {
+            content:"";
+            width: 4px;
+            height: 4px;
+            margin: 0 .3em 0 .2em;
+            vertical-align: middle;
+            border-radius:50%;
+            background: var(--gray-text);
+            display:inline-block;}
+    }
+}

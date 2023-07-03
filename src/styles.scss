@@ -3,6 +3,7 @@
     /* COLORS */
     --background-color: #fff;
     --text-color: #000;
+    --gray-text: rgba(150, 150, 150, .9);
     --gray: rgba(240, 240, 240, .8);
 
     /* FONT */
@@ -36,6 +37,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
+img {
+    width: 100%;
+}
+
 p {
     margin-top: 0;
 }
@@ -44,6 +49,7 @@ a,
 a:visited,
 a:active {
     text-decoration: none;
+    color: var(--text-color);
 }
 
 /****** APP STYLES ******/

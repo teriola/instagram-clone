@@ -1,13 +1,14 @@
 app-sidenav {
-    flex: 1 1 19%;
-    padding: 2em 0 2em 2em;
+    max-width: 245px;
+
     display: flex;
     flex-direction: column;
+    flex: 1 1 19%;
+
+    padding: 2em 0 2em 2em;
     border-right: 2px solid var(--gray);
 }
 
 app-feed {
     flex: 1 0 60%;
 }
-
-
