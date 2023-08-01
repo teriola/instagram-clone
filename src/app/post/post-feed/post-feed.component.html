@@ -1,0 +1,9 @@
+<app-post-item
+    *ngFor="let post of posts"
+    [message]="post.message"
+    [likes]="post.likes.length"
+    [image]="post.image"
+    [ownerImage]="post.owner.profilePicture"
+    [ownerName]="post.owner.name"
+    [ownerSurname]="post.owner.surname"
+    />

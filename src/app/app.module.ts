@@ -3,20 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideNavComponent } from './components/sidenav/sidenav.component';
-import { FeedComponent } from './components/feed/feed.component';
-import { PostItemComponent } from './components/post-item/post-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+import { PostModule } from './post/post.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SideNavComponent,
-        FeedComponent,
-        PostItemComponent,
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule,
+
+        CoreModule,
+        PostModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
