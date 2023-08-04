@@ -11,6 +11,7 @@ ul {
     & li {
         padding: .4em .8em .8em .8em;
         cursor: pointer;
+        vertical-align: middle;
     }
 
     & li:hover {
@@ -18,9 +19,9 @@ ul {
         background-color: var(--gray);
     }
 
-    & li:last-child {
-        margin-top: auto;
-    }
+    // & li:last-child {
+    //     margin-top: auto;
+    // }
 
     & svg {
         margin-right: 1em;

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class SideNavComponent {
 
+    constructor(private userService: UserService, private router: Router) {}
+
+    get isAuth() {
+        return this.userService.isAuth;
+    }
+
+    logout(): void {
+        this.userService.logout();
+        this.router.navigate(['/']);
+    }
 }

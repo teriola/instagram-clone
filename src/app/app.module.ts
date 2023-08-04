@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { PostModule } from './post/post.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { PostModule } from './post/post.module';
 
         CoreModule,
         PostModule,
+        UserModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

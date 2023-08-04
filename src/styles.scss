@@ -57,3 +57,8 @@ app-root {
     display: flex;
     gap: 2em;
 }
+
+app-login,
+app-register {
+    width: 100vw;
+}

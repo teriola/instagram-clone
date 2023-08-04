@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SideNavComponent } from './sidenav/sidenav.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -9,7 +10,8 @@ import { SideNavComponent } from './sidenav/sidenav.component';
         SideNavComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule,
     ],
     exports: [
         SideNavComponent,

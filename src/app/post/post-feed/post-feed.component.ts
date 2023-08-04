@@ -14,7 +14,6 @@ export class PostFeedComponent implements OnInit {
 
     ngOnInit() {
         this.apiService.getPosts().subscribe(posts => {
-            console.log(posts[0].owner);
             this.posts = posts;
         });
     }

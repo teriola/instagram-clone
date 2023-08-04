@@ -1,2 +1,7 @@
-<app-sidenav />
-<router-outlet />
+<div class="main-container">
+    <!-- Sidebar -->
+    <app-sidenav *ngIf="showSidebar()" />
+
+    <!-- Main Content -->
+    <router-outlet />
+</div>
