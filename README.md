@@ -1,27 +1,32 @@
-# InstagramClone
+# Instagram Clone Angular Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Welcome to the Angular Instagram clone! This website was built using Angular, and it uses MongoDB Atlas as a database. The website fetches data from an Express server that is hosted on https://planet-link-api.onrender.com.
 
-## Development server
+## Run locally
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run the application locally follow these steps:
 
-## Code scaffolding
+1. Clone the repository:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+git clone https://github.com/teriola/instagram-clone.git 
+```
 
-## Build
+2. Install the dependencies:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+npm i
+```
 
-## Running unit tests
+3. Run the website:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+ng s
+```
 
-## Running end-to-end tests
+This will start a development server at `http://localhost:4200`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## API server
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The API server for the website is hosted on https://planet-link-api.onrender.com/
+The source code for the server is available at https://github.com/teriola/planet-link-api
