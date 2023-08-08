@@ -27,4 +27,8 @@ export class ApiService {
     registerUser(email: string, name: string, surname: string, password: string, rePassword: string) {
         return this.http.post<User>(`${this.appUrl}/auth/register`, { email, name, surname, password, rePassword });
     }
+
+    // getUserById(_id) {
+    //     return
+    // }
 }
