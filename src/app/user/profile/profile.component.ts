@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/api.service';
     styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+    isLoading: boolean = true;
     user = {
         // "_id": "646ef82203a8b9b4404d787a",
         profilePicture: '',
@@ -31,6 +32,7 @@ export class ProfileComponent {
 
             this.api.getUserPosts(user._id).subscribe((posts) => {
                 this.posts = posts;
+                this.isLoading = false;
             });
         });
     }
