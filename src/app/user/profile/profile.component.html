@@ -7,24 +7,22 @@
         <div class="profile-user-settings">
             <h1 class="profile-user-name">{{user.name + ' ' + user.surname}}</h1>
 
-            <button class="btn profile-edit-btn">Edit Profile</button>
+            <button class="profile-edit-btn">Edit Profile</button>
         </div>
 
-        <!-- <div class="profile-stats">
+        <div class="profile-stats">
             <ul>
-                <li><span class="profile-stat-count">164</span> posts</li>
-                <li><span class="profile-stat-count">188</span> followers</li>
-                <li><span class="profile-stat-count">206</span> following</li>
+                <li><span class="profile-stat-count">{{user.posts.length}}</span> {{user.posts.length === 1 ? 'post' :
+                    'posts'}}</li>
+                <li><span class="profile-stat-count">{{user.followers.length}}</span> {{user.followers.length === 1 ?
+                    'follower' : 'followers'}}</li>
+                <li><span class="profile-stat-count">{{user.following.length}}</span> following</li>
             </ul>
         </div>
 
         <div class="profile-bio">
-            <p>
-                <span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor
-                sit, amet consectetur adipisicing elit 📷✈️🏕️
-            </p>
-        </div> -->
-
+            <p>{{user.description}}</p>
+        </div>
     </div>
 </header>
 

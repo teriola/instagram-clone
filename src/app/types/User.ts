@@ -3,4 +3,8 @@ export interface User {
     name: string,
     surname: string,
     profilePicture: string,
+    posts: string[],
+    followers: string[],
+    following: string[],
+    description: '',
 }
