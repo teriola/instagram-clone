@@ -1,11 +1,5 @@
 <h1 *ngIf="posts.length == 0">No Posts</h1>
 <app-post-item
     *ngFor="let post of posts"
-    [message]="post.message"
-    [likes]="post.likes.length"
-    [image]="post.image"
-    [ownerImage]="post.owner.profilePicture"
-    [ownerName]="post.owner.name"
-    [ownerSurname]="post.owner.surname"
-    [ownerId]="post.owner._id"
+    [post]="post"
     />

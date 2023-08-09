@@ -4,11 +4,13 @@ import { PostFeedComponent } from './post-feed/post-feed.component';
 import { PostItemComponent } from './post-item/post-item.component';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
+import { TimeAgoPipe } from './time-ago.pipe';
 
 @NgModule({
     declarations: [
         PostFeedComponent,
-        PostItemComponent
+        PostItemComponent,
+        TimeAgoPipe
     ],
     imports: [
         CommonModule,

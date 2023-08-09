@@ -1,16 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/app/types/Post';
 
 @Component({
     selector: 'app-post-item',
     templateUrl: './post-item.component.html',
-    styleUrls: ['./post-item.component.scss']
+    styleUrls: ['./post-item.component.scss'],
 })
 export class PostItemComponent {
-    @Input() message: string = '';
-    @Input() likes: number = 0;
-    @Input() image: string = '';
-    @Input() ownerImage: string = '';
-    @Input() ownerName: string = '';
-    @Input() ownerSurname: string = '';
-    @Input() ownerId: string = '';
+    @Input() post: Post = {
+        _id: '',
+        owner: {
+            _id: '',
+            name: '',
+            surname: '',
+            profilePicture: '',
+            posts: [],
+            followers: [],
+            following: [],
+            description: '',
+        },
+        message: '',
+        image: '',
+        likes: [],
+        comments: [],
+        createdAt: '',
+        updatedAt: '',
+    };
 }

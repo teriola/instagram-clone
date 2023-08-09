@@ -76,6 +76,7 @@ section {
         border-radius: 50%;
         margin-right: .8em;
         vertical-align: middle;
+        cursor: pointer;
     }
 
     & .credentials {
@@ -83,11 +84,15 @@ section {
         flex-direction: column;
         justify-content: center;
 
-        & .owner span {
+        & .owner .name {
+            cursor: pointer;
+        }
+
+        & .owner span:last-child {
             color: var(--gray-text);
         }
 
-        & .owner span::before {
+        & .owner span:last-child::before {
             content:"";
             width: 4px;
             height: 4px;
