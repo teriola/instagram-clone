@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
-import { User } from 'src/app/types/User';
 
 @Component({
     selector: 'app-profile',
@@ -19,13 +18,20 @@ export class ProfileComponent {
         following: [''],
         description: '',
     };
+
+    posts: any = [];
+
     constructor(private route: ActivatedRoute, private api: ApiService) {}
 
     ngOnInit() {
         const userId = this.route.snapshot.paramMap.get('userId');
+
         this.api.getUserById(userId).subscribe((user) => {
             this.user = user;
-            console.log(user);
+
+            this.api.getUserPosts(user._id).subscribe((posts) => {
+                this.posts = posts;
+            });
         });
     }
 }

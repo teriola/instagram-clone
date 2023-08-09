@@ -3,11 +3,11 @@
     /* COLORS */
     --background-color: #fff;
     --text-color: #000;
-    --gray-text: rgba(150, 150, 150, .9);
-    --gray: rgba(240, 240, 240, .8);
+    --gray-text: rgba(150, 150, 150, 0.9);
+    --gray: rgba(240, 240, 240, 0.8);
 
     /* FONT */
-    --font: 'Open Sans', sans-serif;
+    --font: "Open Sans", sans-serif;
 }
 
 /****** RESET ******/
@@ -31,7 +31,12 @@ body {
 }
 
 /****** TYPOGRAPHY ******/
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     line-height: 1.1;
     font-weight: 700;
     margin-top: 0;

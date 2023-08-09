@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
+import { User } from '../types/User';
 
 @Injectable({
     providedIn: 'root',
@@ -34,6 +35,13 @@ export class UserService {
         }
     }
 
+    register(): void {}
+
+    logout(): void {
+        this.user = undefined;
+        localStorage.removeItem(this.USER_KEY);
+    }
+
     login(email: string, password: string): void {
         this.user = {
             email,
@@ -45,10 +53,48 @@ export class UserService {
         localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
     }
 
-    register(): void {}
+    // login(email: string, password: string) {
+    //     return this.http
+    //         .post<User>(`https://planet-link-api.onrender.com/auth/login`, {
+    //             email,
+    //             password,
+    //         })
+    //         .pipe(tap((user) => this.user$$.next(user)));
+    // }
 
-    logout(): void {
-        this.user = undefined;
-        localStorage.removeItem(this.USER_KEY);
-    }
+    //   register(
+    //     username: string,
+    //     email: string,
+    //     password: string,
+    //     rePassword: string,
+    //     tel: string
+    //   ) {
+    //     return this.http
+    //       .post<User>('/api/register', {
+    //         username,
+    //         email,
+    //         password,
+    //         rePassword,
+    //         tel,
+    //       })
+    //       .pipe(tap((user) => this.user$$.next(user)));
+    //   }
+
+    //   logout() {
+    //     return this.http
+    //       .post<User>('/api/logout', {})
+    //       .pipe(tap(() => this.user$$.next(undefined)));
+    //   }
+
+    //   getProfile() {
+    //     return this.http
+    //       .get<User>('/api/users/profile')
+    //       .pipe(tap((user) => this.user$$.next(user)));
+    //   }
+
+    //   updateProfile(username: string, email: string, tel?: string) {
+    //     return this.http
+    //       .put<User>('/api/users/profile', { username, email, tel })
+    //       .pipe(tap((user) => this.user$$.next(user)));
+    //   }
 }

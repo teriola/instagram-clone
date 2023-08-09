@@ -5,26 +5,11 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
-import { GalleryItemComponent } from './gallery-item/gallery-item.component';
-
-
+import { PostModule } from '../post/post.module';
 
 @NgModule({
-    declarations: [
-        LoginComponent,
-        RegisterComponent,
-        ProfileComponent,
-        GalleryItemComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-    ],
-    exports: [
-        LoginComponent,
-        RegisterComponent,
-        ProfileComponent,
-    ]
+    declarations: [LoginComponent, RegisterComponent, ProfileComponent],
+    imports: [CommonModule, RouterModule, SharedModule, PostModule],
+    exports: [LoginComponent, RegisterComponent, ProfileComponent],
 })
-export class UserModule { }
+export class UserModule {}

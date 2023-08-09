@@ -34,7 +34,7 @@
 
     & form input {
         width: 80%;
-        margin: .2em 0;
+        margin: 0.2em 0;
         text-overflow: ellipsis;
         padding: 9px 0px 7px 9px;
         outline: none;
@@ -45,9 +45,9 @@
 
     & form input.log-in-btn {
         margin-top: 1em;
-        background: #4BB4F8;
+        background: #4bb4f8;
         color: #fff;
-        border-radius: .5em;
+        border-radius: 0.5em;
         cursor: pointer;
         font-weight: 700;
         display: flex;
@@ -68,9 +68,9 @@
             padding: 1rem 0;
 
             & a {
-                color: #3BB3F8;
+                color: #3bb3f8;
                 font-weight: 800;
-                margin-left: .2em;
+                margin-left: 0.2em;
                 cursor: pointer;
             }
         }

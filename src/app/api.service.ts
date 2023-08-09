@@ -16,8 +16,8 @@ export class ApiService {
         return this.http.get<Post[]>(`${this.appUrl}/posts`);
     }
 
-    getUserPosts(userId: string) {
-        return this.http.get<Post>(`${this.appUrl}/posts/user/${userId}`);
+    getUserPosts(userId: string | null) {
+        return this.http.get(`${this.appUrl}/posts/user/${userId}`);
     }
 
     loginUser(email: string, password: string) {

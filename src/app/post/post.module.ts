@@ -7,18 +7,8 @@ import { RouterModule } from '@angular/router';
 import { TimeAgoPipe } from './time-ago.pipe';
 
 @NgModule({
-    declarations: [
-        PostFeedComponent,
-        PostItemComponent,
-        TimeAgoPipe
-    ],
-    imports: [
-        CommonModule,
-        CoreModule,
-        RouterModule,
-    ],
-    exports: [
-        PostFeedComponent,
-    ],
+    declarations: [PostFeedComponent, PostItemComponent, TimeAgoPipe],
+    imports: [CommonModule, CoreModule, RouterModule],
+    exports: [PostFeedComponent, PostItemComponent],
 })
-export class PostModule { }
+export class PostModule {}

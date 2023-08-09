@@ -8,15 +8,15 @@ import { CoreModule } from './core/core.module';
 import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        FormsModule,
 
         CoreModule,
         PostModule,
@@ -24,6 +24,6 @@ import { SharedModule } from './shared/shared.module';
         SharedModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
