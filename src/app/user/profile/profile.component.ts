@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
+import { User } from 'src/app/types/User';
 
 @Component({
   selector: 'app-profile',
@@ -6,5 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
+  user = {
+    profilePicture: '',
+    name: '',
+    surname: '',
+  };
+  constructor(private route: ActivatedRoute, private api: ApiService) {}
 
+  ngOnInit() {
+    const userId = this.route.snapshot.paramMap.get('userId');
+    this.api.getUserById(userId).subscribe(user => this.user = user);
+    console.log(this.user);
+    
+  }
 }

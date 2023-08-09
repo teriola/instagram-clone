@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
     exports: [
         LoginComponent,
         RegisterComponent,
+        ProfileComponent,
     ]
 })
 export class UserModule { }

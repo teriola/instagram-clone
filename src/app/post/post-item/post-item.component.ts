@@ -12,4 +12,5 @@ export class PostItemComponent {
     @Input() ownerImage: string = '';
     @Input() ownerName: string = '';
     @Input() ownerSurname: string = '';
+    @Input() ownerId: string = '';
 }

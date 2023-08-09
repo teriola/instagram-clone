@@ -13,7 +13,6 @@ export class AppComponent {
     constructor(private router: Router) {}
 
     showSidebar(): boolean {
-        console.log(this.router.url);
         if (this.router.url.includes('login') || this.router.url.includes('register')){
             return false;
         }

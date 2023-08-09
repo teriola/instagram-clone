@@ -28,7 +28,7 @@ export class ApiService {
         return this.http.post<User>(`${this.appUrl}/auth/register`, { email, name, surname, password, rePassword });
     }
 
-    // getUserById(_id) {
-    //     return
-    // }
+    getUserById(_id: any) {
+        return this.http.get<User>(`${this.appUrl}/users/${_id}`);
+    }
 }
