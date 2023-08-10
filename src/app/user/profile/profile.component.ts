@@ -9,8 +9,10 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ProfileComponent {
     isLoading: boolean = true;
+    isOwner: boolean = true;
+
     user = {
-        // "_id": "646ef82203a8b9b4404d787a",
+        _id: '',
         profilePicture: '',
         name: '',
         surname: '',
@@ -26,6 +28,10 @@ export class ProfileComponent {
 
     ngOnInit() {
         const userId = this.route.snapshot.paramMap.get('userId');
+        // const currentUser = localStorage.getItem('[user]');
+        // if (userId === ) {
+        //     this.isOwner = true;
+        // }
 
         this.api.getUserById(userId).subscribe((user) => {
             this.user = user;

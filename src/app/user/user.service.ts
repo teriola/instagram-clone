@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
-import { User } from '../types/User';
 
 @Injectable({
     providedIn: 'root',
@@ -35,7 +34,13 @@ export class UserService {
         }
     }
 
-    register(): void {}
+    register(
+        email: string,
+        name: string,
+        surname: string,
+        passwrod: string,
+        rePassword: string
+    ): void {}
 
     logout(): void {
         this.user = undefined;

@@ -32,6 +32,16 @@
         flex-direction: column;
     }
 
+    & form .passwords {
+        width: 80%;
+        display: flex;
+        gap: 1em;
+
+        & p {
+            display: inline;
+        }
+    }
+
     & form input {
         width: 80%;
         margin: 0.2em 0;
@@ -53,6 +63,13 @@
         display: flex;
         align-items: center;
         padding: 9px 0;
+    }
+
+    & form p.error {
+        color: red;
+        font-size: 0.8em;
+        padding: 0 4em;
+        align-self: flex-start;
     }
 
     & .sub-content {
