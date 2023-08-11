@@ -55,9 +55,13 @@
         padding: 9px 0;
     }
 
+    & form input.log-in-btn:disabled {
+        background-color: gray;
+    }
+
     & form p.error {
         color: red;
-        font-size: .8em;
+        font-size: 0.8em;
         padding: 0 4em;
         align-self: flex-start;
     }

@@ -110,7 +110,12 @@
                 </p>
             </ng-container>
 
-            <input type="submit" value="Register" class="register-btn" />
+            <input
+                [disabled]="registerForm.invalid"
+                type="submit"
+                value="Register"
+                class="register-btn"
+            />
         </form>
     </section>
 

@@ -58,7 +58,12 @@
                 </p>
             </ng-container>
 
-            <input type="submit" value="Log in" class="log-in-btn" />
+            <input
+                [disabled]="loginForm.invalid"
+                type="submit"
+                value="Log in"
+                class="log-in-btn"
+            />
         </form>
     </section>
 

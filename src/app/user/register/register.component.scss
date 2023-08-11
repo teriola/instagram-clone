@@ -65,6 +65,10 @@
         padding: 9px 0;
     }
 
+    & form input.register-btn:disabled {
+        background-color: gray;
+    }
+
     & form p.error {
         color: red;
         font-size: 0.8em;
