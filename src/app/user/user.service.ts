@@ -38,9 +38,22 @@ export class UserService {
         email: string,
         name: string,
         surname: string,
-        passwrod: string,
+        password: string,
         rePassword: string
-    ): void {}
+    ): void {
+        console.log(email);
+        
+        // const user = this.http.post<User>(
+        //     'https://planet-link-api.onrender.com/auth/register',
+        //     {
+        //         email,
+        //         name,
+        //         surname,
+        //         password,
+        //         rePassword,
+        //     }
+        // );
+    }
 
     logout(): void {
         this.user = undefined;
@@ -66,24 +79,6 @@ export class UserService {
     //         })
     //         .pipe(tap((user) => this.user$$.next(user)));
     // }
-
-    //   register(
-    //     username: string,
-    //     email: string,
-    //     password: string,
-    //     rePassword: string,
-    //     tel: string
-    //   ) {
-    //     return this.http
-    //       .post<User>('/api/register', {
-    //         username,
-    //         email,
-    //         password,
-    //         rePassword,
-    //         tel,
-    //       })
-    //       .pipe(tap((user) => this.user$$.next(user)));
-    //   }
 
     //   logout() {
     //     return this.http

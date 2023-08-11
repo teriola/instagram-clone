@@ -39,6 +39,8 @@ export class RegisterComponent {
         password: string,
         rePassword: string
     ) {
+        console.log({ email, name, surname, password, rePassword });
+
         this.userService.register(email, name, surname, password, rePassword);
         this.router.navigate(['/']);
     }
