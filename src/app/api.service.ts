@@ -71,4 +71,46 @@ export class ApiService {
             headers: headers,
         });
     }
+
+    deletePost(_id: string) {
+        const userJson = localStorage.getItem('[user]');
+        let headers = new HttpHeaders();
+
+        if (userJson) {
+            const accessToken = JSON.parse(userJson).accessToken;
+            headers = headers.set('x-authorization', accessToken);
+        }
+
+        return this.http.delete(`${this.appUrl}/posts/${_id}`, {
+            headers: headers,
+        });
+    }
+
+    bookmarkPost(_id: string) {
+        const userJson = localStorage.getItem('[user]');
+        let headers = new HttpHeaders();
+
+        if (userJson) {
+            const accessToken = JSON.parse(userJson).accessToken;
+            headers = headers.set('x-authorization', accessToken);
+        }
+
+        return this.http.post(`${this.appUrl}/posts/${_id}/bookmark`, {
+            headers: headers,
+        });
+    }
+
+    unbookmarkPost(_id: string) {
+        const userJson = localStorage.getItem('[user]');
+        let headers = new HttpHeaders();
+
+        if (userJson) {
+            const accessToken = JSON.parse(userJson).accessToken;
+            headers = headers.set('x-authorization', accessToken);
+        }
+
+        return this.http.delete(`${this.appUrl}/posts/${_id}/bookmark`, {
+            headers: headers,
+        });
+    }
 }

@@ -17,4 +17,13 @@ export class PostFeedComponent implements OnInit {
             this.posts = posts;
         });
     }
+    handlePostDeleted(deletedPostId: string) {
+        const index = this.posts.findIndex(
+            (post) => post._id === deletedPostId
+        );
+
+        if (index !== -1) {
+            this.posts.splice(index, 1);
+        }
+    }
 }

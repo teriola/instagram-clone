@@ -5,10 +5,17 @@ import { PostItemComponent } from './post-item/post-item.component';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { TimeAgoPipe } from './time-ago.pipe';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [PostFeedComponent, PostItemComponent, TimeAgoPipe],
-    imports: [CommonModule, CoreModule, RouterModule],
+    declarations: [
+        PostFeedComponent,
+        PostItemComponent,
+        TimeAgoPipe,
+        CreatePostComponent,
+    ],
+    imports: [CommonModule, CoreModule, RouterModule, FormsModule],
     exports: [PostFeedComponent, PostItemComponent],
 })
 export class PostModule {}

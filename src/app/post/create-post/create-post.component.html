@@ -1,0 +1,36 @@
+<form
+    class="post-form"
+    #createPostForm="ngForm"
+    (ngSubmit)="onSubmit(createPostForm)"
+>
+    <div class="flex-container">
+        <div class="profile-picture">
+            <img
+                [routerLink]="['profile', userId]"
+                [src]="profilePicture"
+                alt="profile picture"
+            />
+        </div>
+        <textarea
+            name="message"
+            placeholder="What's on your mind?"
+            #messageInput="ngModel"
+            ngModel
+            required
+        ></textarea>
+    </div>
+    <div class="flex-container mt-2">
+        <input
+            type="url"
+            placeholder="https://"
+            name="image"
+            #imageInput="ngModel"
+            ngModel
+            required
+            pattern="https?://"
+        />
+        <div class="text-right">
+            <button [disabled]="createPostForm.invalid">Post</button>
+        </div>
+    </div>
+</form>

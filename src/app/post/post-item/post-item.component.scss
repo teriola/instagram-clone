@@ -7,6 +7,7 @@ section {
         display: flex;
         align-self: center;
         margin-top: 5em;
+        position: relative;
 
         & a {
             margin-left: auto;
@@ -14,6 +15,31 @@ section {
 
         & a:hover {
             opacity: 0.6;
+        }
+
+        & .dropdown {
+            position: absolute;
+            right: -140px;
+            top: -50px;
+            display: flex;
+            flex-direction: column;
+            // background-color: gray;
+            box-shadow: 3px 7px 11px -4px rgba(153, 153, 153, 0.77);
+            border-radius: 0.5em;
+
+            & button {
+                padding: 0.5em 1em;
+                margin: 0.5em 1em;
+                border-radius: 0.6em;
+                background-color: #fff;
+                border: none;
+            }
+
+            & button:hover {
+                background-color: #218dfa;
+                color: #fff;
+                transform: scale(1.1);
+            }
         }
     }
 
