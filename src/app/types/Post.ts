@@ -6,6 +6,7 @@ export interface Post {
     image: string;
     likes: string[];
     comments: string[];
+    bookmarks: string[];
     owner: User;
     createdAt: string;
 }

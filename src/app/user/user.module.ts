@@ -7,12 +7,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
 import { FormsModule } from '@angular/forms';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegisterComponent,
         ProfileComponent,
+        BookmarksComponent,
     ],
     imports: [
         CommonModule,

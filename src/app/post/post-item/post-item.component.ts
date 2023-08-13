@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
@@ -18,14 +18,9 @@ export class PostItemComponent {
 
     commentValue: string = '';
 
-    isBookmarked: boolean = false;
-
     isDropdown: boolean = false;
     toggleDropdown() {
         this.isDropdown = !this.isDropdown;
-        console.log(this.authService.loggedUser);
-        
-        
     }
 
     deletePost() {
@@ -66,40 +61,18 @@ export class PostItemComponent {
             }
         );
     }
+
+    bookmarkPost(): void {
+        this.postService.bookmarkPost(this.post._id).subscribe((newPost) => {
+            this.post.bookmarks = newPost.bookmarks;
+        });
+    }
+
+    unbookmarkPost(): void {
+        this.postService.unbookmarkPost(this.post._id).subscribe((newPost) => {
+            this.post.bookmarks = newPost.bookmarks;
+        });
+    }
+
     showComments(): void {}
-
-    // @Output() postDeleted = new EventEmitter<string>();
-
-    // deletePost() {
-    //     this.api.deletePost(this.post._id).subscribe((res) => {
-    //         this.postDeleted.emit(this.post._id);
-    //         this.toggleDropdown();
-    //     });
-    // }
-
-    // bookmarkPost() {
-    //     this.api.bookmarkPost(this.post._id).subscribe((res) => {
-    //         this.isBookmarked = true;
-    //         this.toggleDropdown();
-    //     });
-    // }
-
-    // unbookmarkPost() {
-    //     this.api.unbookmarkPost(this.post._id).subscribe(res => {
-    //         this.isBookmarked = false;
-    //         this.toggleDropdown();
-    //     })
-    // }
-
-    // likePost(): void {
-    //     this.api.likePost(this.post._id).subscribe((post) => {
-    //         this.post.likes = post.likes;
-    //     });
-    // }
-
-    // unlikePost(): void {
-    //     this.api.unlikePost(this.post._id).subscribe((post) => {
-    //         this.post.likes = post.likes;
-    //     });
-    // }
 }

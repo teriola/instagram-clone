@@ -93,7 +93,11 @@
             <span>
                 <a>
                     <svg
-                        *ngIf="!isBookmarked"
+                        *ngIf="
+                            authService.loggedUser &&
+                            !post.bookmarks.includes(authService.loggedUser._id)
+                        "
+                        (click)="bookmarkPost()"
                         aria-label="Save"
                         class="x1lliihq x1n2onr6"
                         color="rgb(0, 0, 0)"
@@ -114,7 +118,11 @@
                         ></polygon>
                     </svg>
                     <svg
-                        *ngIf="isBookmarked"
+                        *ngIf="
+                            authService.loggedUser &&
+                            post.bookmarks.includes(authService.loggedUser._id)
+                        "
+                        (click)="unbookmarkPost()"
                         aria-label="Remove"
                         class="x1lliihq x1n2onr6"
                         color="rgb(0, 0, 0)"

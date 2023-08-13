@@ -76,6 +76,19 @@ export class PostService implements OnDestroy {
         );
     }
 
+    bookmarkPost(id: string): Observable<Post> {
+        return this.http.post<Post>(
+            `${environment.API_URL}/posts/${id}/bookmark`,
+            {}
+        );
+    }
+
+    unbookmarkPost(id: string): Observable<Post> {
+        return this.http.delete<Post>(
+            `${environment.API_URL}/posts/${id}/bookmark`
+        );
+    }
+
     // updatePost(id: string, recipe: IRecipe): Observable<IRecipe> {
     //     return this.http.patch<IRecipe>(
     //         `${environment.API_URL}recipes/${id}`,

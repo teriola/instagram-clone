@@ -4,6 +4,7 @@ import { PostFeedComponent } from './post/post-feed/post-feed.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { BookmarksComponent } from './user/bookmarks/bookmarks.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
         path: 'profile/:userId',
         component: ProfileComponent,
+    },
+    {
+        path: 'profile/:id/bookmarks',
+        component: BookmarksComponent,
     },
 ];
 
