@@ -54,6 +54,7 @@
     <!-- <app-loader *ngIf="isLoading" /> -->
 
     <div class="gallery">
+        <h1 *ngIf="(posts$ | async)?.length === 0">No posts</h1>
         <div
             class="gallery-item"
             tabindex="0"

@@ -91,7 +91,7 @@
                 </a>
             </span>
             <span>
-                <a>
+                <a *ngIf="post.owner._id !== authService.loggedUser?._id">
                     <svg
                         *ngIf="
                             authService.loggedUser &&

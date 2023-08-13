@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subscription, finalize } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Post } from 'src/app/types/Post';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/types/User';
 
 @Injectable({
     providedIn: 'root',
@@ -38,6 +39,13 @@ export class PostService implements OnDestroy {
 
     getPostsByUser(id: string): Observable<Post[]> {
         return this.http.get<Post[]>(`${environment.API_URL}/posts/user/${id}`);
+    }
+
+    getBookmarksByUser(): Observable<Post[]> {
+        this.isLoading = true;
+        return this.http
+            .get<Post[]>(`${environment.API_URL}/posts/bookmarks`)
+            .pipe(finalize(() => (this.isLoading = false)));
     }
 
     getSinglePost(id: string): Observable<Post> {

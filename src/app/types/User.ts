@@ -7,5 +7,6 @@ export interface User {
     accessToken: string;
     followers?: string[];
     following?: string[];
+    bookmarks?: string[];
     description?: string;
 }

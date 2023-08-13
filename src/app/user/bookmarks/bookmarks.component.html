@@ -1,1 +1,9 @@
-<p>bookmarks works!</p>
+<app-loader *ngIf="postService.isLoading" />
+
+<div class="container">
+    <h1 *ngIf="bookmarks.length === 0">No bookmarks</h1>
+
+    <div class="gallery-item" *ngFor="let post of bookmarks">
+        <app-post-item [post]="post" />
+    </div>
+</div>
