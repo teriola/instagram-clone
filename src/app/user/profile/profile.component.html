@@ -1,37 +1,65 @@
-<!-- <header>
-    <div class="profile-picture">
-        <img src="{{ user.profilePicture }}" />
-    </div>
+<app-loader *ngIf="isLoading" />
 
-    <div class="profile-info">
-        <div class="profile-user-settings">
-            <h1 class="profile-user-name">{{user.name + ' ' + user.surname}}</h1>
-
-            <button *ngIf="isOwner" class="profile-edit-btn">Edit Profile</button>
+<ng-container *ngIf="user$ | async as user">
+    <header>
+        <div class="profile-picture">
+            <img [src]="(user$ | async)?.profilePicture" />
+            <!-- Use async pipe -->
         </div>
 
-        <div class="profile-stats">
-            <ul>
-                <li><span class="profile-stat-count">{{user.posts.length}}</span> {{user.posts.length === 1 ? 'post' :
-                    'posts'}}</li>
-                <li><span class="profile-stat-count">{{user.followers.length}}</span> {{user.followers.length === 1 ?
-                    'follower' : 'followers'}}</li>
-                <li><span class="profile-stat-count">{{user.following.length}}</span> following</li>
-            </ul>
-        </div>
+        <div class="profile-info">
+            <div class="profile-user-settings">
+                <h1 class="profile-user-name">
+                    {{ (user$ | async)?.name + " " + (user$ | async)?.surname }}
+                </h1>
+                <!-- <button *ngIf="isOwner" class="profile-edit-btn">
+                Edit Profile
+            </button> -->
+            </div>
 
-        <div class="profile-bio">
-            <p>{{user.description}}</p>
-        </div>
-    </div>
-</header>
+            <div class="profile-stats">
+                <ul>
+                    <li>
+                        <span class="profile-stat-count">{{
+                            (posts$ | async)?.length
+                        }}</span>
+                        {{ (posts$ | async)?.length === 1 ? "post" : "posts" }}
+                    </li>
+                    <li>
+                        <span class="profile-stat-count">{{
+                            (user$ | async)?.followers?.length
+                        }}</span>
+                        {{
+                            (user$ | async)?.followers?.length === 1
+                                ? "follower"
+                                : "followers"
+                        }}
+                    </li>
+                    <li>
+                        <span class="profile-stat-count">{{
+                            (user$ | async)?.following?.length
+                        }}</span>
+                        following
+                    </li>
+                </ul>
+            </div>
 
+            <div class="profile-bio">
+                <p>{{ (user$ | async)?.description }}</p>
+            </div>
+        </div>
+    </header>
+</ng-container>
 <main>
-    <app-loader *ngIf="isLoading" />
+    <!-- <app-loader *ngIf="isLoading" /> -->
 
     <div class="gallery">
-        <div class="gallery-item" tabindex="0" *ngFor="let post of posts">
+        <div
+            class="gallery-item"
+            tabindex="0"
+            *ngFor="let post of posts$ | async"
+        >
             <app-post-item [post]="post" />
         </div>
     </div>
-</main> -->
+</main>

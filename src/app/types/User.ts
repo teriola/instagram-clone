@@ -5,4 +5,7 @@ export interface User {
     email: string;
     profilePicture: string;
     accessToken: string;
+    followers?: string[];
+    following?: string[];
+    description?: string;
 }

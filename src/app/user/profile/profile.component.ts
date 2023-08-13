@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { Observable, finalize, startWith, switchMap } from 'rxjs';
+import { PostService } from 'src/app/services/post/post.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { Post } from 'src/app/types/Post';
+import { User } from 'src/app/types/User';
 
 @Component({
     selector: 'app-profile',
@@ -8,38 +12,47 @@ import { ApiService } from 'src/app/api.service';
     styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-    // isLoading: boolean = true;
-    // isOwner: boolean = true;
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private postService: PostService
+    ) {}
 
-    // user = {
-    //     _id: '',
-    //     profilePicture: '',
-    //     name: '',
-    //     surname: '',
-    //     posts: [''],
-    //     followers: [''],
-    //     following: [''],
-    //     description: '',
-    // };
+    user$!: Observable<User | null>;
+    posts$!: Observable<Post[]>;
 
-    // posts: any = [];
+    isLoading: boolean = true;
 
-    // constructor(private route: ActivatedRoute, private api: ApiService) {}
+    ngOnInit(): void {
+        this.user$ = this.route.paramMap.pipe(
+            switchMap((params) => {
+                const userId = params.get('userId');
+                if (userId) {
+                    return this.userService.getSingleUser(userId).pipe(
+                        finalize(() => {
+                            this.isLoading = false;
+                        })
+                    );
+                } else {
+                    return new Observable<User | null>((subscriber) => {
+                        subscriber.next(null);
+                        subscriber.complete();
+                    });
+                }
+            })
+        );
 
-    // ngOnInit() {
-    //     const userId = this.route.snapshot.paramMap.get('userId');
-    //     // const currentUser = localStorage.getItem('[user]');
-    //     // if (userId === ) {
-    //     //     this.isOwner = true;
-    //     // }
-
-    //     this.api.getUserById(userId).subscribe((user) => {
-    //         this.user = user;
-
-    //         this.api.getUserPosts(user._id).subscribe((posts) => {
-    //             this.posts = posts;
-    //             this.isLoading = false;
-    //         });
-    //     });
-    // }
+        this.posts$ = this.user$.pipe(
+            switchMap((user) => {
+                if (user) {
+                    return this.postService.getPostsByUser(user._id);
+                } else {
+                    return new Observable<Post[]>((subscriber) => {
+                        subscriber.next([]);
+                        subscriber.complete();
+                    });
+                }
+            })
+        );
+    }
 }
