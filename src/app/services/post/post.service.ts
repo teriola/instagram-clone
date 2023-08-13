@@ -37,9 +37,7 @@ export class PostService implements OnDestroy {
     }
 
     getPostsByUser(id: string): Observable<Post[]> {
-        return this.http.get<Post[]>(
-            `${environment.API_URL}/posts/user/${id}`
-        );
+        return this.http.get<Post[]>(`${environment.API_URL}/posts/user/${id}`);
     }
 
     getSinglePost(id: string): Observable<Post> {
@@ -64,12 +62,15 @@ export class PostService implements OnDestroy {
         this._posts$.next(updatedPosts);
     }
 
-    likePost(id: string) {
-        return this.http.post(`${environment.API_URL}/posts/${id}/like`, {});
+    likePost(id: string): Observable<Post> {
+        return this.http.post<Post>(
+            `${environment.API_URL}/posts/${id}/like`,
+            {}
+        );
     }
 
-    unlikePost(id: string) {
-        return this.http.delete(
+    unlikePost(id: string): Observable<Post> {
+        return this.http.delete<Post>(
             `${environment.API_URL}/posts/${id}/unlike`,
             {}
         );

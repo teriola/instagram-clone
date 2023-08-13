@@ -23,6 +23,9 @@ export class PostItemComponent {
     isDropdown: boolean = false;
     toggleDropdown() {
         this.isDropdown = !this.isDropdown;
+        console.log(this.authService.loggedUser);
+        
+        
     }
 
     deletePost() {
@@ -43,7 +46,7 @@ export class PostItemComponent {
 
         this.postService.likePost(this.post._id).subscribe(
             (updatedPost) => {
-                this.post = updatedPost as Post;
+                this.post.likes = updatedPost.likes;
             },
             (error) => {
                 console.error('Error liking post:', error);
@@ -56,7 +59,7 @@ export class PostItemComponent {
 
         this.postService.unlikePost(this.post._id).subscribe(
             (updatedPost) => {
-                this.post = updatedPost as Post;
+                this.post.likes = updatedPost.likes;
             },
             (error) => {
                 console.error('Error unliking post:', error);
