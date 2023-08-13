@@ -145,13 +145,13 @@
             <a href="#">{{ post.likes.length | number : "1.0-0" }} likes</a>
         </div>
 
-        <span class="view-comments-btn" (click)="showComments()"
+        <!-- <span class="view-comments-btn" (click)="showComments()"
             >View comments</span
-        >
+        > -->
 
-        <div class="comments"></div>
+        <!-- <div class="comments"></div> -->
 
-        <div class="comment">
+        <!-- <div class="comment">
             <input
                 #commentInput
                 (input)="commentValue = commentInput.value"
@@ -160,6 +160,6 @@
                 type="text"
             />
             <a *ngIf="commentValue" class="post-btn">Post</a>
-        </div>
+        </div> -->
     </footer>
 </section>
