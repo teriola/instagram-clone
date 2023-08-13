@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
     selector: 'app-register',
@@ -9,39 +9,30 @@ import { Router } from '@angular/router';
     styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(public authService: AuthService, private router: Router) {}
 
     onSubmit(form: NgForm): void {
         if (form.invalid) return;
 
-        const value: {
-            email: string;
+        const {
+            name,
+            surname,
+            email,
+            passwordGroup: { password, rePassword },
+        } = form.value as {
             name: string;
             surname: string;
+            email: string;
             passwordGroup: {
                 password: string;
                 rePassword: string;
             };
-        } = form.value;
-        this.register(
-            value.email,
-            value.name,
-            value.surname,
-            value.passwordGroup.password,
-            value.passwordGroup.rePassword
-        );
-    }
+        };
 
-    register(
-        email: string,
-        name: string,
-        surname: string,
-        password: string,
-        rePassword: string
-    ) {
-        console.log({ email, name, surname, password, rePassword });
+        this.authService
+            .register(name, surname, email, password, rePassword)
+            .subscribe(() => this.router.navigate(['/']));
 
-        this.userService.register(email, name, surname, password, rePassword);
-        this.router.navigate(['/']);
+        form.resetForm();
     }
 }

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
-import { UserService } from 'src/app/user/user.service';
 
 @Component({
     selector: 'app-post-item',
@@ -9,66 +9,94 @@ import { UserService } from 'src/app/user/user.service';
     styleUrls: ['./post-item.component.scss'],
 })
 export class PostItemComponent {
-    constructor(private api: ApiService, public userService: UserService) {}
+    constructor(
+        public authService: AuthService,
+        private postService: PostService
+    ) {}
 
-    isDropdown: boolean = false;
+    @Input() post!: Post;
 
-    @Input() post: Post = {
-        _id: '',
-        owner: {
-            _id: '',
-            name: '',
-            surname: '',
-            profilePicture: '',
-            posts: [],
-            followers: [],
-            following: [],
-            description: '',
-        },
-        message: '',
-        image: '',
-        likes: [],
-        comments: [],
-        createdAt: '',
-        updatedAt: '',
-    };
-    @Output() postDeleted = new EventEmitter<string>();
-
-    deletePost() {
-        this.api.deletePost(this.post._id).subscribe((res) => {
-            this.postDeleted.emit(this.post._id);
-            this.toggleDropdown();
-        });
-    }
+    commentValue: string = '';
 
     isBookmarked: boolean = false;
-    bookmarkPost() {
-        this.api.bookmarkPost(this.post._id).subscribe((res) => {
-            this.isBookmarked = true;
-            this.toggleDropdown();
-        });
-    }
 
-    unbookmarkPost() {
-        this.api.unbookmarkPost(this.post._id).subscribe(res => {
-            this.isBookmarked = false;
-            this.toggleDropdown();
-        })
-    }
-
-    likePost(): void {
-        this.api.likePost(this.post._id).subscribe((post) => {
-            this.post.likes = post.likes;
-        });
-    }
-
-    unlikePost(): void {
-        this.api.unlikePost(this.post._id).subscribe((post) => {
-            this.post.likes = post.likes;
-        });
-    }
-
+    isDropdown: boolean = false;
     toggleDropdown() {
         this.isDropdown = !this.isDropdown;
     }
+
+    deletePost() {
+        if (confirm('Are you sure you want to delete this post?')) {
+            this.postService.deletePost(this.post._id).subscribe(
+                () => {
+                    this.postService.postsInit();
+                },
+                (error) => {
+                    console.error('Error deleting post:', error);
+                }
+            );
+        }
+    }
+
+    likePost(): void {
+        if (!this.authService.isAuthenticated()) return;
+
+        this.postService.likePost(this.post._id).subscribe(
+            (updatedPost) => {
+                this.post = updatedPost as Post;
+            },
+            (error) => {
+                console.error('Error liking post:', error);
+            }
+        );
+    }
+
+    unlikePost(): void {
+        if (!this.authService.isAuthenticated()) return;
+
+        this.postService.unlikePost(this.post._id).subscribe(
+            (updatedPost) => {
+                this.post = updatedPost as Post;
+            },
+            (error) => {
+                console.error('Error unliking post:', error);
+            }
+        );
+    }
+    showComments(): void {}
+
+    // @Output() postDeleted = new EventEmitter<string>();
+
+    // deletePost() {
+    //     this.api.deletePost(this.post._id).subscribe((res) => {
+    //         this.postDeleted.emit(this.post._id);
+    //         this.toggleDropdown();
+    //     });
+    // }
+
+    // bookmarkPost() {
+    //     this.api.bookmarkPost(this.post._id).subscribe((res) => {
+    //         this.isBookmarked = true;
+    //         this.toggleDropdown();
+    //     });
+    // }
+
+    // unbookmarkPost() {
+    //     this.api.unbookmarkPost(this.post._id).subscribe(res => {
+    //         this.isBookmarked = false;
+    //         this.toggleDropdown();
+    //     })
+    // }
+
+    // likePost(): void {
+    //     this.api.likePost(this.post._id).subscribe((post) => {
+    //         this.post.likes = post.likes;
+    //     });
+    // }
+
+    // unlikePost(): void {
+    //     this.api.unlikePost(this.post._id).subscribe((post) => {
+    //         this.post.likes = post.likes;
+    //     });
+    // }
 }

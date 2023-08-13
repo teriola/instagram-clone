@@ -8,38 +8,38 @@ import { ApiService } from 'src/app/api.service';
     styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-    isLoading: boolean = true;
-    isOwner: boolean = true;
+    // isLoading: boolean = true;
+    // isOwner: boolean = true;
 
-    user = {
-        _id: '',
-        profilePicture: '',
-        name: '',
-        surname: '',
-        posts: [''],
-        followers: [''],
-        following: [''],
-        description: '',
-    };
+    // user = {
+    //     _id: '',
+    //     profilePicture: '',
+    //     name: '',
+    //     surname: '',
+    //     posts: [''],
+    //     followers: [''],
+    //     following: [''],
+    //     description: '',
+    // };
 
-    posts: any = [];
+    // posts: any = [];
 
-    constructor(private route: ActivatedRoute, private api: ApiService) {}
+    // constructor(private route: ActivatedRoute, private api: ApiService) {}
 
-    ngOnInit() {
-        const userId = this.route.snapshot.paramMap.get('userId');
-        // const currentUser = localStorage.getItem('[user]');
-        // if (userId === ) {
-        //     this.isOwner = true;
-        // }
+    // ngOnInit() {
+    //     const userId = this.route.snapshot.paramMap.get('userId');
+    //     // const currentUser = localStorage.getItem('[user]');
+    //     // if (userId === ) {
+    //     //     this.isOwner = true;
+    //     // }
 
-        this.api.getUserById(userId).subscribe((user) => {
-            this.user = user;
+    //     this.api.getUserById(userId).subscribe((user) => {
+    //         this.user = user;
 
-            this.api.getUserPosts(user._id).subscribe((posts) => {
-                this.posts = posts;
-                this.isLoading = false;
-            });
-        });
-    }
+    //         this.api.getUserPosts(user._id).subscribe((posts) => {
+    //             this.posts = posts;
+    //             this.isLoading = false;
+    //         });
+    //     });
+    // }
 }

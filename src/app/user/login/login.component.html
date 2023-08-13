@@ -1,4 +1,5 @@
-<div class="container">
+<app-loader *ngIf="authService.isLoading" />
+<div *ngIf="!authService.isLoading" class="container">
     <section class="main-content">
         <header class="header">
             <a routerLink="/"

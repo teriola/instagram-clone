@@ -1,5 +1,8 @@
 .container {
     min-width: 468px;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
 
     & h1 {
         text-align: center;

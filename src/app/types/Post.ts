@@ -1,4 +1,4 @@
-import { User } from './User';
+import { User } from "./User";
 
 export interface Post {
     _id: string;
@@ -8,5 +8,4 @@ export interface Post {
     comments: string[];
     owner: User;
     createdAt: string;
-    updatedAt: string;
 }

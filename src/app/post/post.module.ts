@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { TimeAgoPipe } from './time-ago.pipe';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
         TimeAgoPipe,
         CreatePostComponent,
     ],
-    imports: [CommonModule, CoreModule, RouterModule, FormsModule],
+    imports: [CommonModule, CoreModule, RouterModule, FormsModule, SharedModule],
     exports: [PostFeedComponent, PostItemComponent],
 })
 export class PostModule {}

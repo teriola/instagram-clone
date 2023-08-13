@@ -1,4 +1,5 @@
-<div class="container">
+<app-loader *ngIf="authService.isLoading" />
+<div class="container" *ngIf="!authService.isLoading">
     <section class="main-content">
         <header class="header">
             <a routerLink="/"
@@ -116,7 +117,6 @@
                 value="Register"
                 class="register-btn"
             />
-            {{registerForm.invalid | json}}
         </form>
     </section>
 

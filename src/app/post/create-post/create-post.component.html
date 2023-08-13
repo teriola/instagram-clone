@@ -6,8 +6,8 @@
     <div class="flex-container">
         <div class="profile-picture">
             <img
-                [routerLink]="['profile', userId]"
-                [src]="profilePicture"
+                [routerLink]="['profile', authService.loggedUser?._id]"
+                [src]="authService.loggedUser?.profilePicture"
                 alt="profile picture"
             />
         </div>
@@ -27,10 +27,14 @@
             #imageInput="ngModel"
             ngModel
             required
-            pattern="https?://"
+            pattern="https?:\/\/.*"
         />
         <div class="text-right">
-            <button [disabled]="createPostForm.invalid">Post</button>
+            <button
+                [disabled]="createPostForm.invalid || postService.isLoading"
+            >
+                Post
+            </button>
         </div>
     </div>
 </form>

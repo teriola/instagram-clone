@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
 
 @Component({
@@ -8,22 +11,15 @@ import { Post } from 'src/app/types/Post';
     styleUrls: ['./post-feed.component.scss'],
 })
 export class PostFeedComponent implements OnInit {
-    constructor(private apiService: ApiService) {}
+    posts!: Observable<Post[]>;
 
-    posts: Post[] = [];
+    constructor(
+        public postService: PostService,
+        public authService: AuthService
+    ) {}
 
-    ngOnInit() {
-        this.apiService.getPosts().subscribe((posts) => {
-            this.posts = posts;
-        });
-    }
-    handlePostDeleted(deletedPostId: string) {
-        const index = this.posts.findIndex(
-            (post) => post._id === deletedPostId
-        );
-
-        if (index !== -1) {
-            this.posts.splice(index, 1);
-        }
+    ngOnInit(): void {
+        this.postService.postsInit();
+        this.posts = this.postService.getAllPosts();
     }
 }

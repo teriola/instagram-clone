@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
     selector: 'app-create-post',
@@ -7,18 +9,23 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
-    userId: string = '';
-    profilePicture: string =
-        'https://www.refugee-action.org.uk/wp-content/uploads/2016/10/anonymous-user.png';
+    constructor(
+        public authService: AuthService,
+        public postService: PostService
+    ) {}
 
     onSubmit(form: NgForm) {
         if (form.invalid) return;
 
-        const value: {
+        const { message, image } = form.value as {
             message: string;
             image: string;
-        } = form.value;
+        };
 
-        console.log(value);
+        this.postService.createPost({ message, image }).subscribe((newPost) => {
+            this.postService.addPost(newPost);
+        });
+
+        form.resetForm();
     }
 }

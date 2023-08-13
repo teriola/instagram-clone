@@ -9,6 +9,7 @@ import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { tokenInterceptorProvider } from './shared/interceptors/token.interceptor';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
         UserModule,
         SharedModule,
     ],
-    providers: [],
+    providers: [tokenInterceptorProvider],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

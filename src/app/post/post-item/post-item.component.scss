@@ -6,11 +6,12 @@ section {
     & header {
         display: flex;
         align-self: center;
-        margin-top: 5em;
         position: relative;
 
         & a {
             margin-left: auto;
+            width: 24px;
+            cursor: pointer;
         }
 
         & a:hover {
@@ -19,11 +20,10 @@ section {
 
         & .dropdown {
             position: absolute;
-            right: -140px;
-            top: -50px;
+            right: -100px;
+            top: -15px;
             display: flex;
             flex-direction: column;
-            // background-color: gray;
             box-shadow: 3px 7px 11px -4px rgba(153, 153, 153, 0.77);
             border-radius: 0.5em;
 
@@ -50,6 +50,14 @@ section {
     }
 
     & footer {
+        & span {
+            cursor: pointer;
+        }
+
+        & span.view-comments-btn {
+            font-size: .9em;
+        }
+
         & .buttons {
             display: flex;
             gap: 1em;
@@ -70,11 +78,20 @@ section {
 
         & .comment {
             margin-top: 1em;
+            position: relative;
 
             & input {
                 all: unset;
                 font-size: 0.8em;
                 width: 100%;
+            }
+
+            & a {
+                position: absolute;
+                right: 1px;
+                cursor: pointer;
+                color: #218dfa;
+                font-size: .8em;
             }
         }
     }
