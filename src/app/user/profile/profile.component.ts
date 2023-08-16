@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, finalize, startWith, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Post } from 'src/app/types/Post';
@@ -15,7 +16,8 @@ export class ProfileComponent {
     constructor(
         private route: ActivatedRoute,
         private userService: UserService,
-        private postService: PostService
+        public authService: AuthService,
+        private postService: PostService,
     ) {}
 
     user$!: Observable<User | null>;

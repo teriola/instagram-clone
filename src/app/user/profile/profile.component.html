@@ -12,9 +12,9 @@
                 <h1 class="profile-user-name">
                     {{ (user$ | async)?.name + " " + (user$ | async)?.surname }}
                 </h1>
-                <!-- <button *ngIf="isOwner" class="profile-edit-btn">
-                Edit Profile
-            </button> -->
+                <button *ngIf="(user$ | async)?._id === authService.loggedUser?._id" class="profile-edit-btn">
+                    Edit Profile
+                </button>
             </div>
 
             <div class="profile-stats">
@@ -51,8 +51,6 @@
     </header>
 </ng-container>
 <main>
-    <!-- <app-loader *ngIf="isLoading" /> -->
-
     <div class="gallery">
         <h1 *ngIf="(posts$ | async)?.length === 0">No posts</h1>
         <div
