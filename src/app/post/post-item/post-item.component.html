@@ -14,7 +14,13 @@
             <p *ngIf="post.message">{{ post.message }}</p>
         </div>
 
-        <a (click)="toggleDropdown()">
+        <a
+            (click)="toggleDropdown()"
+            *ngIf="
+                authService.isAuthenticated() &&
+                post.owner._id === authService.loggedUser?._id
+            "
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, Subscription, finalize } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Post } from 'src/app/types/Post';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/types/User';
 
 @Injectable({
     providedIn: 'root',
