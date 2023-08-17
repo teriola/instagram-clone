@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+    AbstractControl,
+    FormBuilder,
+    FormGroup,
+    ValidationErrors,
+    ValidatorFn,
+    Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -9,30 +16,50 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-    constructor(public authService: AuthService, private router: Router) {}
+    registerForm: FormGroup = this.fb.group(
+        {
+            name: ['', [Validators.required, Validators.minLength(3)]],
+            surname: ['', [Validators.required, Validators.minLength(3)]],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            rePassword: ['', [Validators.required]],
+        },
+        { validators: this.passwordMatchValidator }
+    );
 
-    onSubmit(form: NgForm): void {
-        if (form.invalid) return;
+    constructor(
+        public authService: AuthService,
+        private router: Router,
+        private fb: FormBuilder
+    ) {}
 
-        const {
-            name,
-            surname,
-            email,
-            passwordGroup: { password, rePassword },
-        } = form.value as {
+    onSubmit(): void {
+        if (this.registerForm.invalid) return;
+
+        const { name, surname, email, password, rePassword } = this.registerForm
+            .value as {
             name: string;
             surname: string;
             email: string;
-            passwordGroup: {
-                password: string;
-                rePassword: string;
-            };
+            password: string;
+            rePassword: string;
         };
 
         this.authService
             .register(name, surname, email, password, rePassword)
             .subscribe(() => this.router.navigate(['/']));
 
-        form.resetForm();
+        this.registerForm.reset();
+    }
+
+    passwordMatchValidator(formGroup: FormGroup) {
+        const passwordControl = formGroup.get('password');
+        const rePasswordControl = formGroup.get('rePassword');
+
+        if (passwordControl?.value === rePasswordControl?.value) {
+            rePasswordControl?.setErrors(null);
+        } else {
+            rePasswordControl?.setErrors({ passwordMismatch: true });
+        }
     }
 }

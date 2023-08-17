@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -9,20 +9,28 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-    constructor(public authService: AuthService, private router: Router) {}
+    loginForm: FormGroup;
 
-    onSubmit(form: NgForm): void {
-        if (form.invalid) return;
+    constructor(
+        public authService: AuthService,
+        private router: Router,
+        private fb: FormBuilder
+    ) {
+        this.loginForm = this.fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+        });
+    }
 
-        const { email, password } = form.value as {
-            email: string;
-            password: string;
-        };
+    onSubmit(): void {
+        if (this.loginForm.invalid) return;
+
+        const { email, password } = this.loginForm.value;
 
         this.authService.login(email, password).subscribe(() => {
             this.router.navigate(['/']);
         });
 
-        form.resetForm();
+        this.loginForm.reset();
     }
 }

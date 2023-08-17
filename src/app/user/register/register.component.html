@@ -11,57 +11,50 @@
                 </svg></a>
         </header>
 
-        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-            <input type="text" name="name" placeholder="Name" ngModel required #nameInput="ngModel" />
-            <p class="error" *ngIf="nameInput.touched && nameInput.errors?.['required']">
-                Name is required
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <input type="text" formControlName="name" placeholder="Name" />
+            <p class="error"
+                *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
+                Name is required and must be at least 3 characters.
             </p>
 
-            <input type="text" name="surname" placeholder="Surname" #surnameInput="ngModel" ngModel required />
-            <p class="error" *ngIf="surnameInput.touched && surnameInput.errors?.['required']">
-                Surname is required
+            <input type="text" formControlName="surname" placeholder="Surname" />
+            <p class="error"
+                *ngIf="registerForm.get('surname')?.invalid && (registerForm.get('surname')?.dirty || registerForm.get('surname')?.touched)">
+                Surname is required and must be at least 3 characters.
             </p>
 
-            <input type="email" name="email" placeholder="Email" #emailInput="ngModel" ngModel required email />
-            <ng-container *ngIf="emailInput.touched">
-                <p class="error" *ngIf="emailInput.errors?.['required']">
-                    Email is required
-                </p>
-                <p class="error" *ngIf="emailInput.errors?.['email']">
-                    Email is invalid
-                </p>
-            </ng-container>
+            <input type="email" formControlName="email" placeholder="Email" />
+            <p class="error"
+                *ngIf="registerForm.get('email')?.hasError('required') && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                Email is required.
+            </p>
+            <p class="error"
+                *ngIf="registerForm.get('email')?.hasError('email') && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                Email is invalid.
+            </p>
 
-            <div class="passwords" ngModelGroup="passwordGroup">
-                <input type="password" name="password" placeholder="Password" ngModel required minlength="6"
-                    #passwordInput="ngModel" />
-
-                <input type="password" name="rePassword" placeholder="Repeat password" ngModel required
-                    #rePasswordInput="ngModel" appPasswordsMatch="'password'" />
+            <div class="passwords">
+                <input type="password" formControlName="password" placeholder="Password" />
+                <input type="password" formControlName="rePassword" placeholder="Repeat password" appPasswordMatch />
             </div>
-
-            <!-- <p
-                class="error"
-                *ngIf="
-                    registerForm.controls.rePassword?.hasError(
-                        'passwordsDoNotMatch'
-                    )
-                "
-            >
-                Passwords do not match
-            </p> -->
-
-            <ng-container *ngIf="passwordInput.touched">
-                <p class="error" *ngIf="passwordInput.errors?.['required']">
-                    Password is required
-                </p>
-                <p class="error" *ngIf="passwordInput.errors?.['minlength']">
-                    Password is too short
-                </p>
-            </ng-container>
+            <p class="error"
+                *ngIf="registerForm.get('password')?.hasError('required') && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                Password is required.
+            </p>
+            <p class="error"
+                *ngIf="registerForm.get('password')?.hasError('minlength') && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                Password must be at least 6 characters.
+            </p>
+            <p class="error"
+                *ngIf="registerForm.get('rePassword')?.hasError('passwordMismatch') && (registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched)">
+                Passwords do not match.
+            </p>
 
             <input [disabled]="registerForm.invalid" type="submit" value="Register" class="register-btn" />
         </form>
+
     </section>
 
     <section class="sub-content">

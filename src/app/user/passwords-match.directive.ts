@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import {
     AbstractControl,
     NG_VALIDATORS,
@@ -17,21 +17,16 @@ import {
     ],
 })
 export class PasswordsMatchDirective implements Validator {
+    @Input('appPasswordsMatch') targetControlName: string = '';
+
     constructor() {}
-    // Todo fix
 
     validate(control: AbstractControl): ValidationErrors | null {
-        const passwordControl = control.get('password');
-        const rePasswordControl = control.get('rePassword');
+        const targetControl = control.parent?.get(this.targetControlName);
 
-        if (passwordControl && rePasswordControl) {
-            if (passwordControl.value !== rePasswordControl.value) {
-                rePasswordControl.setErrors({ passwordsDoNotMatch: true });
-            } else {
-                rePasswordControl.setErrors(null);
-            }
+        if (targetControl && control.value !== targetControl.value) {
+            return { passwordsDoNotMatch: true };
         }
-
         return null;
     }
 }

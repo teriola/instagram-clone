@@ -10,30 +10,30 @@
                 </svg></a>
         </header>
 
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <input type="email" name="email" placeholder="Email" #emailInput="ngModel" ngModel required email />
-            <ng-container *ngIf="emailInput.touched">
-                <p class="error" *ngIf="emailInput.errors?.['required']">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input type="email" formControlName="email" placeholder="Email" />
+            <ng-container *ngIf="loginForm.get('email')?.touched">
+                <p class="error" *ngIf="loginForm.get('email')?.hasError('required')">
                     Email is required
                 </p>
-                <p class="error" *ngIf="emailInput.errors?.['email']">
+                <p class="error" *ngIf="loginForm.get('email')?.hasError('email')">
                     Email is invalid
                 </p>
             </ng-container>
 
-            <input type="password" name="password" placeholder="Password" #passwordInput="ngModel" ngModel required
-                minlength="6" />
-            <ng-container *ngIf="passwordInput.touched">
-                <p class="error" *ngIf="passwordInput.errors?.['required']">
+            <input type="password" formControlName="password" placeholder="Password" />
+            <ng-container *ngIf="loginForm.get('password')?.touched">
+                <p class="error" *ngIf="loginForm.get('password')?.hasError('required')">
                     Password is required
                 </p>
-                <p class="error" *ngIf="passwordInput.errors?.['minlength']">
+                <p class="error" *ngIf="loginForm.get('password')?.hasError('minlength')">
                     Password is too short
                 </p>
             </ng-container>
 
             <input [disabled]="loginForm.invalid" type="submit" value="Log in" class="log-in-btn" />
         </form>
+
     </section>
 
     <section class="sub-content">
