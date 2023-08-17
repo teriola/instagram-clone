@@ -1,21 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
+import { Comment } from 'src/app/types/Comment';
 
 @Component({
     selector: 'app-post-item',
     templateUrl: './post-item.component.html',
     styleUrls: ['./post-item.component.scss'],
 })
-export class PostItemComponent {
+export class PostItemComponent implements OnInit {
     @Input() post!: Post;
+    comments: Comment[] = [];
     commentValue: string = '';
+    isComments: boolean = false;
 
     constructor(
         public authService: AuthService,
         private postService: PostService
     ) {}
+
+    ngOnInit(): void {
+        this.postService
+            .getCommentsForPost(this.post._id)
+            .subscribe((comments) => {
+                this.comments = comments;
+            });
+    }
 
     deletePost() {
         if (confirm('Are you sure you want to delete this post?')) {
@@ -68,5 +79,11 @@ export class PostItemComponent {
         });
     }
 
-    showComments(): void {}
+    showComments(): void {
+        this.isComments = true;
+    }
+
+    hideComments(): void {
+        this.isComments = false;
+    }
 }

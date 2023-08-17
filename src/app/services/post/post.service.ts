@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription, finalize, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, finalize } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Post } from 'src/app/types/Post';
+import { Comment } from 'src/app/types/Comment';
 
 @Injectable({
     providedIn: 'root',
@@ -103,6 +104,11 @@ export class PostService implements OnDestroy {
     unbookmarkPost(id: string): Observable<Post> {
         return this.http.delete<Post>(
             `${environment.API_URL}/posts/${id}/bookmark`
+        );
+    }
+    getCommentsForPost(postId: string): Observable<Comment[]> {
+        return this.http.get<Comment[]>(
+            `${environment.API_URL}/posts/${postId}/comments`
         );
     }
 
