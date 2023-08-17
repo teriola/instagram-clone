@@ -6,39 +6,10 @@
 
         <div class="credentials">
             <p [routerLink]="['profile']" class="owner">
-                <span class="name"
-                    >{{ post.owner.name }} {{ post.owner.surname }}</span
-                >
+                <span class="name">{{ post.owner.name }} {{ post.owner.surname }}</span>
                 <span>{{ post.createdAt | timeAgo }}</span>
             </p>
             <p *ngIf="post.message">{{ post.message }}</p>
-        </div>
-
-        <a
-            (click)="toggleDropdown()"
-            *ngIf="
-                authService.isAuthenticated() &&
-                post.owner._id === authService.loggedUser?._id
-            "
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                ></path>
-            </svg>
-        </a>
-
-        <div class="dropdown" *ngIf="isDropdown">
-            <button class="delete-btn" (click)="deletePost()">Delete</button>
         </div>
     </header>
 
@@ -49,99 +20,60 @@
     <footer>
         <div class="buttons">
             <span>
-                <a
-                    *ngIf="
+                <a *ngIf="
                         authService.loggedUser &&
                         !post.likes.includes(authService.loggedUser._id)
-                    "
-                    (click)="likePost()"
-                >
-                    <svg
-                        aria-label="Like"
-                        class="x1lliihq x1n2onr6"
-                        color="rgb(38, 38, 38)"
-                        fill="rgb(38, 38, 38)"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                    >
+                    " (click)="likePost()">
+                    <svg aria-label="Like" class="x1lliihq x1n2onr6" color="rgb(38, 38, 38)" fill="rgb(38, 38, 38)"
+                        height="24" role="img" viewBox="0 0 24 24" width="24">
                         <title>Like</title>
                         <path
-                            d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"
-                        ></path>
+                            d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z">
+                        </path>
                     </svg>
                 </a>
 
                 <a>
-                    <svg
-                        (click)="unlikePost()"
-                        *ngIf="
+                    <svg (click)="unlikePost()" *ngIf="
                             authService.loggedUser &&
                             post.likes.includes(authService.loggedUser._id)
-                        "
-                        aria-label="Unlike"
-                        class="x1lliihq x1n2onr6"
-                        color="rgb(255, 48, 64)"
-                        fill="rgb(255, 48, 64)"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 48 48"
-                        width="24"
-                    >
+                        " aria-label="Unlike" class="x1lliihq x1n2onr6" color="rgb(255, 48, 64)"
+                        fill="rgb(255, 48, 64)" height="24" role="img" viewBox="0 0 48 48" width="24">
                         <title>Unlike</title>
                         <path
-                            d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"
-                        ></path>
+                            d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+                        </path>
                     </svg>
                 </a>
             </span>
             <span>
                 <a *ngIf="post.owner._id !== authService.loggedUser?._id">
-                    <svg
-                        *ngIf="
-                            authService.loggedUser &&
-                            !post.bookmarks.includes(authService.loggedUser._id)
-                        "
-                        (click)="bookmarkPost()"
-                        aria-label="Save"
-                        class="x1lliihq x1n2onr6"
-                        color="rgb(0, 0, 0)"
-                        fill="rgb(0, 0, 0)"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                    >
+                    <svg *ngIf="authService.loggedUser && !post.bookmarks.includes(authService.loggedUser._id)"
+                        (click)="bookmarkPost()" aria-label="Save" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)"
+                        fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                         <title>Save</title>
-                        <polygon
-                            fill="none"
-                            points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                        ></polygon>
+                        <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
                     </svg>
-                    <svg
-                        *ngIf="
+                    <svg *ngIf="
                             authService.loggedUser &&
                             post.bookmarks.includes(authService.loggedUser._id)
-                        "
-                        (click)="unbookmarkPost()"
-                        aria-label="Remove"
-                        class="x1lliihq x1n2onr6"
-                        color="rgb(0, 0, 0)"
-                        fill="rgb(0, 0, 0)"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                    >
+                        " (click)="unbookmarkPost()" aria-label="Remove" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)"
+                        fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                         <title>Remove</title>
                         <path
-                            d="M20 22a.999.999 0 0 1-.687-.273L12 14.815l-7.313 6.912A1 1 0 0 1 3 21V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1Z"
-                        ></path>
+                            d="M20 22a.999.999 0 0 1-.687-.273L12 14.815l-7.313 6.912A1 1 0 0 1 3 21V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1Z">
+                        </path>
+                    </svg>
+                </a>
+                <a *ngIf="
+                        authService.isAuthenticated() &&
+                        post.owner._id === authService.loggedUser?._id
+                    ">
+                    <svg (click)="deletePost()" xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                     </svg>
                 </a>
             </span>
@@ -151,21 +83,27 @@
             <a href="#">{{ post.likes.length | number : "1.0-0" }} likes</a>
         </div>
 
-        <!-- <span class="view-comments-btn" (click)="showComments()"
-            >View comments</span
-        > -->
+        <span class="view-comments-btn" (click)="showComments()">View comments</span>
 
-        <!-- <div class="comments"></div> -->
+        <div class="comments">
 
-        <!-- <div class="comment">
-            <input
-                #commentInput
-                (input)="commentValue = commentInput.value"
-                placeholder="Add a comment..."
-                name="comment"
-                type="text"
-            />
+            <!-- Todo route to comment owner -->
+            <div class="comment">
+                <div class="profile-picture">
+                    <!-- Todo show comment owner image -->
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi1.wp.com%2Fwww.herald.ng%2Fwp-content%2Fuploads%2F2020%2F04%2Felon_musk_royal_society.jpg%3Ffit%3D1200%252C1200%26ssl%3D1&amp;f=1&amp;nofb=1&amp;ipt=ad87db1da65f2ea2fe919c90643ae9477a277d3ccb95ae80997766adecc52ef4&amp;ipo=images"
+                        alt="Profile picture" />
+                </div>
+                <div class="comment-content">
+                    <p>Nice catNice catNice catNice catNice catNice catNice cat</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment">
+            <input #commentInput (input)="commentValue = commentInput.value" placeholder="Add a comment..."
+                name="comment" type="text" />
             <a *ngIf="commentValue" class="post-btn">Post</a>
-        </div> -->
+        </div>
     </footer>
 </section>

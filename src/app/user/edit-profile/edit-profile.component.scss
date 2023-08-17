@@ -1,0 +1,20 @@
+section {
+    width: 493.4px;
+    // padding: 1em;
+    // border-bottom: 2px solid var(--gray);
+
+    header {
+        border: 2px solid var(--gray);
+        border-radius: 1em;
+        padding: 1em;
+        display: flex;
+        justify-content: center;
+
+        .profile-image {
+            width: 152px;
+            height: 152px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+    }
+}

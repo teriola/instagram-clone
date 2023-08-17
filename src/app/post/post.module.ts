@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { PostFeedComponent } from './post-feed/post-feed.component';
 import { PostItemComponent } from './post-item/post-item.component';
-import { CoreModule } from '../core/core.module';
-import { RouterModule } from '@angular/router';
 import { TimeAgoPipe } from './time-ago.pipe';
 import { CreatePostComponent } from './create-post/create-post.component';
+
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
+import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -16,7 +19,14 @@ import { SharedModule } from '../shared/shared.module';
         TimeAgoPipe,
         CreatePostComponent,
     ],
-    imports: [CommonModule, CoreModule, RouterModule, FormsModule, SharedModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+
+        CoreModule,
+        SharedModule,
+    ],
     exports: [PostFeedComponent, PostItemComponent],
 })
 export class PostModule {}

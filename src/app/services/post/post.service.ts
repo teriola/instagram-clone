@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription, finalize } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, finalize, of } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Post } from 'src/app/types/Post';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -36,8 +37,17 @@ export class PostService implements OnDestroy {
             });
     }
 
-    getPostsByUser(id: string): Observable<Post[]> {
-        return this.http.get<Post[]>(`${environment.API_URL}/posts/user/${id}`);
+    getPostsByUser(id: string | undefined): Observable<Post[]> {
+        if (id) {
+            return this.http.get<Post[]>(
+                `${environment.API_URL}/posts/user/${id}`
+            );
+        } else {
+            return new Observable<Post[]>((subscriber) => {
+                subscriber.next([]);
+                subscriber.complete();
+            });
+        }
     }
 
     getBookmarksByUser(): Observable<Post[]> {

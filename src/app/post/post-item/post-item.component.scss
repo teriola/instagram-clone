@@ -55,7 +55,7 @@ section {
         }
 
         & span.view-comments-btn {
-            font-size: .9em;
+            font-size: 0.9em;
         }
 
         & .buttons {
@@ -76,6 +76,13 @@ section {
             font-weight: bold;
         }
 
+        & .comments {
+            & .comment {
+                display: flex;
+                align-items: center;
+            }
+        }
+
         & .comment {
             margin-top: 1em;
             position: relative;
@@ -91,7 +98,7 @@ section {
                 right: 1px;
                 cursor: pointer;
                 color: #218dfa;
-                font-size: .8em;
+                font-size: 0.8em;
             }
         }
     }

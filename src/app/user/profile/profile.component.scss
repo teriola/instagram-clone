@@ -4,6 +4,7 @@ header {
     padding-bottom: 1em;
     border-bottom: 2px solid var(--gray);
     margin-bottom: 4em;
+    margin-left: 6em;
 
     & .profile-picture {
         width: 152px;
@@ -53,7 +54,12 @@ header {
 }
 
 main {
+    margin-left: 6em;
+
     .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
         h1 {
             text-align: center;
         }

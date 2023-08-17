@@ -21,7 +21,6 @@ export class TokenInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         const accessToken = this.authService.loggedUser?.accessToken;
-        
 
         if (accessToken) {
             const authReq = req.clone({

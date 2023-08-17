@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
@@ -9,19 +9,13 @@ import { Post } from 'src/app/types/Post';
     styleUrls: ['./post-item.component.scss'],
 })
 export class PostItemComponent {
+    @Input() post!: Post;
+    commentValue: string = '';
+
     constructor(
         public authService: AuthService,
         private postService: PostService
     ) {}
-
-    @Input() post!: Post;
-
-    commentValue: string = '';
-
-    isDropdown: boolean = false;
-    toggleDropdown() {
-        this.isDropdown = !this.isDropdown;
-    }
 
     deletePost() {
         if (confirm('Are you sure you want to delete this post?')) {

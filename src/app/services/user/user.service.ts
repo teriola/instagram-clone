@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { User } from 'src/app/types/User';
+
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/types/User';
 
 @Injectable({
     providedIn: 'root',
@@ -37,12 +38,14 @@ export class UserService {
         localStorage.removeItem('[user]');
     }
 
-    getSingleUser(id: string): Observable<User | null> {
-        return this.http.get<User>(`${environment.API_URL}/users/${id}`).pipe(
-            catchError(() => {
-                return of(null);
-            })
-        );
+    getSingleUser(id: string | null): Observable<User | null> {
+        if (id) {
+            return this.http
+                .get<User>(`${environment.API_URL}/users/${id}`)
+                .pipe(catchError(() => of(null)));
+        } else {
+            return of(null);
+        }
     }
 
     // updateUser(id: string, user: User): Observable<User> {

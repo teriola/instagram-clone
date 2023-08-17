@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PostFeedComponent } from './post/post-feed/post-feed.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { BookmarksComponent } from './user/bookmarks/bookmarks.component';
 
 const routes: Routes = [
@@ -22,6 +24,10 @@ const routes: Routes = [
     {
         path: 'profile/:userId',
         component: ProfileComponent,
+    },
+    {
+        path: 'profile/:userId/edit',
+        component: EditProfileComponent,
     },
     {
         path: 'bookmarks',
