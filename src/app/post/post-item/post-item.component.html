@@ -83,8 +83,12 @@
             <a href="#">{{ post.likes.length | number : "1.0-0" }} likes</a>
         </div>
 
-        <span class="view-comments-btn" (click)="showComments()" *ngIf="comments.length > 0 && !isComments">View comments</span>
-        <span class="view-comments-btn" (click)="hideComments()" *ngIf="isComments">Hide comments</span>
+        <span class="view-comments-btn" (click)="showComments()" *ngIf="post.comments.length > 0 && !isComments">
+            View comments
+        </span>
+        <span class="view-comments-btn" (click)="hideComments()" *ngIf="isComments">
+            Hide comments
+        </span>
 
         <div class="comments" *ngIf="isComments">
             <div class="comment" *ngFor="let comment of comments">
@@ -98,9 +102,8 @@
         </div>
 
         <div class="comment">
-            <input #commentInput (input)="commentValue = commentInput.value" placeholder="Add a comment..."
-                name="comment" type="text" />
-            <a *ngIf="commentValue" class="post-btn">Post</a>
+            <input #commentInput [(ngModel)]="commentValue" placeholder="Add a comment..." name="comment" type="text" />
+            <a *ngIf="commentValue" class="post-btn" (click)="postComment()">Post</a>
         </div>
     </footer>
 </section>

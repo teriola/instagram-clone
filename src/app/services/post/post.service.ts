@@ -106,9 +106,17 @@ export class PostService implements OnDestroy {
             `${environment.API_URL}/posts/${id}/bookmark`
         );
     }
+
     getCommentsForPost(postId: string): Observable<Comment[]> {
         return this.http.get<Comment[]>(
             `${environment.API_URL}/posts/${postId}/comments`
+        );
+    }
+
+    commentPost(postId: string, text: string): Observable<Comment> {
+        return this.http.post<Comment>(
+            `${environment.API_URL}/posts/${postId}/comment`,
+            { text }
         );
     }
 

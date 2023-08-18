@@ -3,13 +3,14 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { Post } from 'src/app/types/Post';
 import { Comment } from 'src/app/types/Comment';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-post-item',
     templateUrl: './post-item.component.html',
     styleUrls: ['./post-item.component.scss'],
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent {
     @Input() post!: Post;
     comments: Comment[] = [];
     commentValue: string = '';
@@ -20,11 +21,28 @@ export class PostItemComponent implements OnInit {
         private postService: PostService
     ) {}
 
-    ngOnInit(): void {
+    getComments(): Observable<Comment[]> {
+        return this.postService.getCommentsForPost(this.post._id);
+    }
+
+    postComment(): void {
         this.postService
-            .getCommentsForPost(this.post._id)
-            .subscribe((comments) => {
-                this.comments = comments;
+            .commentPost(this.post._id, this.commentValue)
+            .subscribe((comment) => {
+                this.commentValue = '';
+
+                if (this.isComments) {
+                    this.comments.unshift(comment);
+                } else {
+                    if (this.authService.loggedUser) {
+                        this.comments = [
+                            {
+                                ...comment,
+                                owner: this.authService.loggedUser,
+                            },
+                        ];
+                    }
+                }
             });
     }
 
@@ -44,27 +62,17 @@ export class PostItemComponent implements OnInit {
     likePost(): void {
         if (!this.authService.isAuthenticated()) return;
 
-        this.postService.likePost(this.post._id).subscribe(
-            (updatedPost) => {
-                this.post.likes = updatedPost.likes;
-            },
-            (error) => {
-                console.error('Error liking post:', error);
-            }
-        );
+        this.postService.likePost(this.post._id).subscribe((updatedPost) => {
+            this.post.likes = updatedPost.likes;
+        });
     }
 
     unlikePost(): void {
         if (!this.authService.isAuthenticated()) return;
 
-        this.postService.unlikePost(this.post._id).subscribe(
-            (updatedPost) => {
-                this.post.likes = updatedPost.likes;
-            },
-            (error) => {
-                console.error('Error unliking post:', error);
-            }
-        );
+        this.postService.unlikePost(this.post._id).subscribe((updatedPost) => {
+            this.post.likes = updatedPost.likes;
+        });
     }
 
     bookmarkPost(): void {
@@ -80,6 +88,9 @@ export class PostItemComponent implements OnInit {
     }
 
     showComments(): void {
+        this.getComments().subscribe((comments) => {
+            this.comments = comments;
+        });
         this.isComments = true;
     }
 
