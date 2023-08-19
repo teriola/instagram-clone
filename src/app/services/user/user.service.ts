@@ -48,10 +48,14 @@ export class UserService {
         }
     }
 
-    // updateUser(id: string, user: User): Observable<User> {
-    //     return this.http.patch<User>(
-    //         `${environment.API_URL}users/${id}`,
-    //         user
-    //     );
-    // }
+    updateUser(id: string, user: UpdateUser): Observable<User> {
+        return this.http.patch<User>(`${environment.API_URL}/users/${id}`, user);
+    }
+}
+
+interface UpdateUser {
+    profilePicture: string;
+    name: string;
+    surname: string;
+    description: string;
 }

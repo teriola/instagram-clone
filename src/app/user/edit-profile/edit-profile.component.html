@@ -5,6 +5,45 @@
         </div>
     </header>
     <article>
+        <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()" class="profile-form">
+            <!-- Name -->
+            <input type="text" formControlName="name" placeholder="Enter your name" required>
+            <ng-container *ngIf="editProfileForm.get('name')?.touched">
+                <p class="error" *ngIf="editProfileForm.get('name')?.hasError('required')">
+                    Name is required
+                </p>
+                <p class="error" *ngIf="editProfileForm.get('name')?.hasError('minLength')">
+                    Name is too short
+                </p>
+            </ng-container>
 
+            <!-- Surname -->
+            <input type="text" formControlName="surname" placeholder="Enter your surname" required>
+            <ng-container *ngIf="editProfileForm.get('surname')?.touched">
+                <p class="error" *ngIf="editProfileForm.get('surname')?.hasError('required')">
+                    Surame is required
+                </p>
+                <p class="error" *ngIf="editProfileForm.get('surname')?.hasError('minLength')">
+                    Surname is too short
+                </p>
+            </ng-container>
+
+            <!-- profilePicture -->
+            <input type="text" name="profilePicture" formControlName="profilePicture"
+                placeholder="Enter URL to your profile picture" required>
+            <ng-container *ngIf="editProfileForm.get('profilePicture')?.touched">
+                <p class="error" *ngIf="editProfileForm.get('profilePicture')?.hasError('required')">
+                    Profile picture is required
+                </p>
+                <p class="error" *ngIf="editProfileForm.get('profilePicture')?.hasError('pattern')">
+                    Url is invalid
+                </p>
+            </ng-container>
+
+            <!-- Description -->
+            <textarea formControlName="description" rows="4" placeholder="Tell us about yourself"></textarea>
+
+            <input [disabled]="editProfileForm.invalid" type="submit" value="Edit" class="edit-profile-btn" />
+        </form>
     </article>
 </section>

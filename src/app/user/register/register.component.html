@@ -12,7 +12,6 @@
         </header>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
             <input type="text" formControlName="name" placeholder="Name" />
             <p class="error"
                 *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
