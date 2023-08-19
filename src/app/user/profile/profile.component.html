@@ -12,7 +12,7 @@
                 <h1 class="profile-user-name">
                     {{ (user$ | async)?.name + " " + (user$ | async)?.surname }}
                 </h1>
-                <a [routerLink]="['profile', authService.loggedUser?._id, 'edit']"
+                <a [routerLink]="['edit']"
                     *ngIf="(user$ | async)?._id === authService.loggedUser?._id" class="profile-edit-btn">
                     Edit Profile
                 </a>
